@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager_app/views/edit_note_page.dart';
+import 'package:task_manager_app/models/note_model.dart';
+import 'package:task_manager_app/views/view_note_page.dart';
 
-class NoteCard extends StatelessWidget {
-  const NoteCard({super.key});
+class NoteCard extends StatefulWidget {
+  final NoteModel noteModel;
+  const NoteCard({super.key, required this.noteModel});
 
+  @override
+  State<NoteCard> createState() => _NoteCardState();
+}
+
+class _NoteCardState extends State<NoteCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -11,7 +18,13 @@ class NoteCard extends StatelessWidget {
         top: 15,
       ),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ViewNotePage(noteModel:  NoteModel(title: 'x' , subTitle: 'y' , description: 'z')),
+              ));
+        },
         child: Container(
           decoration: const BoxDecoration(
             color: Colors.white,
@@ -20,33 +33,39 @@ class NoteCard extends StatelessWidget {
             ),
           ),
           child: ListTile(
-            trailing: IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const EditNotePage(),
-                    ));
-              },
-              icon: const Icon(
-                Icons.edit,
-                size: 30,
-              ),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.edit,
+                    size: 30,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.delete,
+                    size: 30,
+                  ),
+                ),
+              ],
             ),
-            title: const Text(
+            title: Text(
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              'BigTitle',
-              style: TextStyle(
+              widget.noteModel.title,
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            subtitle: const Text(
+            subtitle: Text(
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              'SubTitle',
-              style: TextStyle(
+              widget.noteModel.subTitle,
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w300,
               ),

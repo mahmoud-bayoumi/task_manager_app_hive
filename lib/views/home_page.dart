@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager_app/models/note_model.dart';
 import 'package:task_manager_app/views/add_note_page.dart';
 import 'package:task_manager_app/widgets/note_card.dart';
 
@@ -22,7 +23,7 @@ class HomePage extends StatelessWidget {
         child: ListView.builder(
           itemCount: 5,
           itemBuilder: (context, index) {
-            return const NoteCard();
+            return  NoteCard(noteModel: NoteModel(title: 'x' , subTitle: 'y' , description: 'z'),);
           },
         ),
       ),
