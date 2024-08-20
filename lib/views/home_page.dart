@@ -5,7 +5,7 @@ import 'package:task_manager_app/widgets/note_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
+// home page 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
