@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager_app/models/note_model.dart';
-import 'package:task_manager_app/widgets/note_card_view.dart';
+import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/widgets/note_card_view.dart';
 
 class ViewNotePage extends StatelessWidget {
   const ViewNotePage({super.key, required this.noteModel});

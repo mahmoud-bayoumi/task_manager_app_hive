@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager_app/widgets/custom_text_field.dart';
+import 'package:notes_app/widgets/custom_text_field.dart';
 
 class AddNotePage extends StatelessWidget {
   const AddNotePage({super.key});
@@ -26,7 +26,8 @@ class AddNotePage extends StatelessWidget {
               ),
               const CustomTextField(hintText: 'Subtitle'),
               const CustomTextField(
-                maxLines: 12,
+                maxLines: 5,
+                inputBorder: OutlineInputBorder(),
                 hintText: 'Description',
               ),
               const SizedBox(

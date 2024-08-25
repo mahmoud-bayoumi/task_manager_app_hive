@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager_app/views/home_page.dart';
+import 'package:notes_app/views/home_page.dart';
 
 void main() {
   runApp(const TaskManager());
@@ -10,9 +10,10 @@ class TaskManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      home: const HomePage(),
+      theme: ThemeData(fontFamily: 'Poppins'),
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
     );
   }
 }
