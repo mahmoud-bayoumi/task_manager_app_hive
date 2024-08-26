@@ -48,38 +48,36 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 60,
           ),
-          BlocConsumer<AddNoteCubit, AddNotesStates>(
+          BlocListener<AddNoteCubit, AddNotesStates>(
             listener: (context, state) {
               if (state is AddNotesuccess) {
                 Navigator.pop(context);
               }
               if (state is AddNotefailure) {}
             },
-            builder: (context, state) {
-              return MaterialButton(
-                onPressed: () {
-                  if (keyForm.currentState!.validate()) {
-                    keyForm.currentState!.save();
-                    NoteModel note = NoteModel(
-                        title: title!,
-                        subTitle: subTitle!,
-                        description: content!);
-                    BlocProvider.of<AddNoteCubit>(context).addNote(note);
-                  } else {
-                    autovalidateMode = AutovalidateMode.always;
-                    setState(() {});
-                  }
-                },
-                color: Colors.black,
-                textColor: const Color(0xffFED42C),
-                minWidth: 150,
-                child: const Text(
-                  'Add Note',
-                  style: TextStyle(fontSize: 20),
-                ),
-              );
-            },
-          )
+            child: MaterialButton(
+              onPressed: () {
+                if (keyForm.currentState!.validate()) {
+                  keyForm.currentState!.save();
+                  NoteModel note = NoteModel(
+                      title: title!,
+                      subTitle: subTitle!,
+                      description: content!);
+                  BlocProvider.of<AddNoteCubit>(context).addNote(note);
+                } else {
+                  autovalidateMode = AutovalidateMode.always;
+                  setState(() {});
+                }
+              },
+              color: Colors.black,
+              textColor: const Color(0xffFED42C),
+              minWidth: 150,
+              child: const Text(
+                'Add Note',
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          ),
         ],
       ),
     );
