@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class NoteCardViewText extends StatelessWidget {
-  const NoteCardViewText(
+class DisplayNote extends StatelessWidget {
+  const DisplayNote(
       {super.key,
       required this.noteText,
       required this.fontWeight,
@@ -20,7 +20,6 @@ class NoteCardViewText extends StatelessWidget {
               noteText,
               style: TextStyle(fontSize: fontSize, fontWeight: fontWeight),
             ),
-            
           ),
         ),
       ],
