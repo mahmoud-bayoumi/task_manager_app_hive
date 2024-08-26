@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/widgets/add_note_form.dart';
-import 'package:notes_app/widgets/custom_text_field.dart';
 
 class AddNotePage extends StatelessWidget {
-  
   const AddNotePage({super.key});
 
   @override
@@ -18,9 +16,9 @@ class AddNotePage extends StatelessWidget {
               fontSize: 26, fontWeight: FontWeight.w400, color: Colors.black),
         ),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: EdgeInsets.symmetric(horizontal: 8.0),
           child: AddNoteForm(),
         ),
       ),
