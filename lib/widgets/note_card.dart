@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/views/edit_note_view.dart';
 import 'package:notes_app/views/view_note_view.dart';
-
 
 class NoteCard extends StatefulWidget {
   final NoteModel noteModel;
@@ -23,7 +25,11 @@ class _NoteCardState extends State<NoteCard> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ViewNotePage(noteModel:  NoteModel(title: 'x' , subTitle: 'y' , description: 'z')),
+                builder: (context) => ViewNotePage(
+                    noteModel: NoteModel(
+                        title: widget.noteModel.title,
+                        subTitle: widget.noteModel.subTitle,
+                        description: widget.noteModel.description)),
               ));
         },
         child: Container(
@@ -38,14 +44,24 @@ class _NoteCardState extends State<NoteCard> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditNotePage(
+                                  note: widget.noteModel,
+                                )));
+                  },
                   icon: const Icon(
                     Icons.edit,
                     size: 30,
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.noteModel.delete();
+                    BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                  },
                   icon: const Icon(
                     Icons.delete,
                     size: 30,

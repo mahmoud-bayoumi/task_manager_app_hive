@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
+import 'package:notes_app/cubits/notes_cubit/notes_cubit_states.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/add_note_view.dart';
 import 'package:notes_app/widgets/note_card.dart';
 
-
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
-// home page 
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+    super.initState();
+  }
+
+// home page
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,11 +35,16 @@ class HomePage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: ListView.builder(
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return NoteCard(
-              noteModel: NoteModel(title: 'x', subTitle: 'y', description: 'z'),
+        child: BlocBuilder<NotesCubit, NotesCubitStates>(
+          builder: (context, state) {
+            List<NoteModel> notes = BlocProvider.of<NotesCubit>(context).notes;
+            return ListView.builder(
+              itemCount: notes.length,
+              itemBuilder: (context, index) {
+                return NoteCard(
+                  noteModel: notes[index],
+                );
+              },
             );
           },
         ),

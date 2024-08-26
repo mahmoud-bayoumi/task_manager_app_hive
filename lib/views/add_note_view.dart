@@ -22,7 +22,7 @@ class AddNotePage extends StatelessWidget {
         ),
         body: const SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            padding: EdgeInsets.symmetric(horizontal: 12.0),
             child: AddNoteForm(),
           ),
         ),

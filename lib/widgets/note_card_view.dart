@@ -20,6 +20,7 @@ class NoteCardViewText extends StatelessWidget {
               noteText,
               style: TextStyle(fontSize: fontSize, fontWeight: fontWeight),
             ),
+            
           ),
         ),
       ],
