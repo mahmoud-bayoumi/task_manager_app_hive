@@ -5,5 +5,6 @@ class NoteModel extends HiveObject {
   final String subTitle;
   final String description;
 
-  NoteModel({required this.title, required this.subTitle, required this.description}); 
+  NoteModel(
+      {required this.title, required this.subTitle, required this.description});
 }
